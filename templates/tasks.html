@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>Tasks</title>
+</head>
+<body>
+    <h1>Tasks</h1>
+    <button onclick="window.open('/auth-todoist', '_blank').focus()">
+        Connect to Todoist
+    </button>
+    <div>
+        {% for task in tasks %}
+        <form action="/push" method="get">
+            <input type="text" id="{{task}}" name="subject" value="{{tasks[task]['subject']}}">
+            <input type="date" name="date">
+            <button type="submit">Push To Todoist</button>
+        </form> 
+        {% endfor %}
+        <form action="/pushall" method="get">
+            <button type="submit">Push All</button>
+        </form>
+    </div>
+
+    <a href="/" class="back">Back</a>
+
+</body>
+</html>
